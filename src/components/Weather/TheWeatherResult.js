@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Typewriter from 'typewriter-effect';
 import Head from 'next/head';
@@ -165,9 +165,15 @@ const TheWeatherResult = () => {
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <Marker position={[latitude, longitude]}>
-                  <Popup>
-                    {location}
-                  </Popup>
+                  <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
+                    <div className="modal-content">
+                      <button onClick={closeModal} className="modal-close-button">&times;</button>
+                      <div>
+                        <h2>{location}</h2>
+                        {/* Additional details or content related to the marker */}
+                      </div>
+                    </div>
+                  </Modal>
                 </Marker>
               </MapContainer>
             )}
@@ -190,23 +196,6 @@ const TheWeatherResult = () => {
         <p className="text-xl">No weather information found in {location}</p>
       )}
 
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
-        <div className="modal-content">
-          <button onClick={closeModal} className="modal-close-button">&times;</button>
-          {latitude && longitude && (
-            <MapContainer center={[latitude, longitude]} zoom={13} style={{ height: '400px', width: '100%' }}>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              <Marker position={[latitude, longitude]}>
-                <Popup>
-                  {location}
-                </Popup>
-              </Marker>
-            </MapContainer>
-          )}
-        </div>
-      </Modal>
     </div>
   );
 };
