@@ -1,19 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import Typewriter from 'typewriter-effect';
 import Head from 'next/head';
 import Modal from 'react-modal';
-
-// Leaflet marker icon fix
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-});
 
 const TheWeatherResult = () => {
   const router = useRouter();
@@ -160,22 +149,7 @@ const TheWeatherResult = () => {
         <div className="md:w-[50%]">
           <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
             {latitude && longitude && (
-              <MapContainer center={[latitude, longitude]} zoom={13} style={{ height: '400px', width: '100%' }}>
-                <TileLayer
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={[latitude, longitude]}>
-                  <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
-                    <div className="modal-content">
-                      <button onClick={closeModal} className="modal-close-button">&times;</button>
-                      <div>
-                        <h2>{location}</h2>
-                        {/* Additional details or content related to the marker */}
-                      </div>
-                    </div>
-                  </Modal>
-                </Marker>
-              </MapContainer>
+              <MapComponent latitude={latitude} longitude={longitude} location={location} />
             )}
           </div>
         </div>
@@ -196,8 +170,40 @@ const TheWeatherResult = () => {
         <p className="text-xl">No weather information found in {location}</p>
       )}
 
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
+        <div className="modal-content">
+          <button onClick={closeModal} className="modal-close-button">&times;</button>
+          {latitude && longitude && (
+            <MapComponent latitude={latitude} longitude={longitude} location={location} />
+          )}
+        </div>
+      </Modal>
     </div>
   );
+};
+
+// Dynamic import for Leaflet map components
+const MapComponent = ({ latitude, longitude, location }) => {
+  const [MapContainer, setMapContainer] = useState(null);
+
+  useEffect(() => {
+    import('react-leaflet').then(({ MapContainer, TileLayer, Marker, Popup }) => {
+      setMapContainer(() => (
+        <MapContainer center={[latitude, longitude]} zoom={13} style={{ height: '400px', width: '100%' }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[latitude, longitude]}>
+            <Popup>
+              {location}
+            </Popup>
+          </Marker>
+        </MapContainer>
+      ));
+    });
+  }, [latitude, longitude]);
+
+  return MapContainer;
 };
 
 export default TheWeatherResult;
