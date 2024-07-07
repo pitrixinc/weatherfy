@@ -149,7 +149,7 @@ const TheWeatherResult = () => {
             )}
           </div>
         </div>
-        <div className="md:w-[50%]">
+        <div className={`md:w-[50%] ${modalIsOpen ? 'hidden' : ''}`}>
           <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
             {latitude && longitude && (
               <MapComponent latitude={latitude} longitude={longitude} location={location} />
