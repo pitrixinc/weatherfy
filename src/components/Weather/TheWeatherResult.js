@@ -192,7 +192,7 @@ const MapComponent = ({ latitude, longitude, location }) => {
   useEffect(() => {
     import('react-leaflet').then(({ MapContainer, TileLayer, Marker, Popup }) => {
       setMapContainer(() => (
-        <MapContainer center={[latitude, longitude]} zoom={13} style={{ height: '400px', width: '100%' }}>
+        <MapContainer center={[latitude, longitude]} zoom={10} style={{ height: '400px', width: '100%' }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
