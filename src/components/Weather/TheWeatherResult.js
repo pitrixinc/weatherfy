@@ -20,11 +20,9 @@ const TheWeatherResult = () => {
   const { location } = router.query;
   const [weatherData, setWeatherData] = useState(null);
   const [aiArticle, setAiArticle] = useState('');
-  const [image, setImage] = useState('');
   const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
-  const typewriterRef = useRef(null);
   const [typedArticle, setTypedArticle] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [latitude, setLatitude] = useState(null);
@@ -129,7 +127,7 @@ const TheWeatherResult = () => {
           {images.length > 0 && (
             <img
               src={images[currentImageIndex]}
-              alt={`${location}`}
+              alt={location}
               className="w-full h-64 object-cover mb-4"
             />
           )}
@@ -159,9 +157,9 @@ const TheWeatherResult = () => {
             )}
           </div>
         </div>
-        <div className={`md:w-[50%] ${modalIsOpen ? 'hidden' : ''}`}>
-          {latitude && longitude && (
-            <div onClick={openModal}>
+        <div className="md:w-[50%]">
+          <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
+            {latitude && longitude && (
               <MapContainer center={[latitude, longitude]} zoom={13} style={{ height: '400px', width: '100%' }}>
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -172,11 +170,12 @@ const TheWeatherResult = () => {
                   </Popup>
                 </Marker>
               </MapContainer>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div> 
-      <hr/>
+      </div>
+
+      <hr />
 
       {weatherData ? (
         <div>
