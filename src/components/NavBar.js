@@ -29,7 +29,7 @@ export default function NavBar() {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <a href="#">
-                  <img className="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="logo" />
+                  <img className="w-auto md:h-10 h-8 sm:h-7" src="https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png" alt="logo" />
                 </a>
 
                 <div className="hidden mx-10 md:block">
