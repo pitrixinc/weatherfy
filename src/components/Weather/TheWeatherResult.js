@@ -334,90 +334,90 @@ const TheWeatherResult = () => {
           </div>
         </div>
       </div>
-
+<div className='h-[610px] overflow-y-auto'>
       {weatherData ? (
         <div className="bg-white shadow-md rounded-lg p-4 mt-8">
-          <h2 className="text-2xl font-semibold mb-4">Current Weather Data</h2>
+          <h2 className="md:text-2xl text-xl font-semibold mb-4">Current Weather Data</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiThermometer className="text-4xl text-blue-600 mr-2" />
               <div>
-                <p className="text-lg font-semibold">Temperature</p>
+                <p className="text-sm font-semibold">Temperature</p>
                 <p>Current: {weatherData.main.temp}°C</p>
                 <p>Min: {weatherData.main.temp_min}°C, Max: {weatherData.main.temp_max}°C</p>
               </div>
             </div>
-            <div className="flex items-center bg-green-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-100 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiThermometer className="text-4xl text-green-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Feels Like</p>
                 <p>{weatherData.main.feels_like}°C</p>
               </div>
             </div>
-            <div className="flex items-center bg-yellow-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiBarometer className="text-4xl text-yellow-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Pressure</p>
                 <p>{weatherData.main.pressure} hPa</p>
               </div>
             </div>
-            <div className="flex items-center bg-purple-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-100 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiHumidity className="text-4xl text-purple-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Humidity</p>
                 <p>{weatherData.main.humidity}%</p>
               </div>
             </div>
-            <div className="flex items-center bg-red-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               {renderWeatherIcon(weatherData.weather[0].icon)}
               <div>
                 <p className="text-sm font-semibold">Conditions</p>
                 <p>{weatherData.weather[0].description}</p>
               </div>
             </div>
-            <div className="flex items-center bg-indigo-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-100 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiCloud className="text-4xl text-indigo-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Cloudiness</p>
                 <p>{weatherData.clouds.all}%</p>
               </div>
             </div>
-            <div className="flex items-center bg-pink-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiStrongWind className="text-4xl text-pink-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Wind</p>
                 <p>{weatherData.wind.speed} m/s, {weatherData.wind.deg}°</p>
               </div>
             </div>
-            <div className="flex items-center bg-teal-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-100 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiRaindrop className="text-4xl text-teal-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Precipitation</p>
                 <p>{weatherData.rain ? weatherData.rain['1h'] : '0'} mm</p>
               </div>
             </div>
-            <div className="flex items-center bg-orange-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiDaySunny className="text-4xl text-orange-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">UV Index</p>
                 <p>{weatherData.uv_index || 'N/A'}</p>
               </div>
             </div>
-            <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-100 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiFog className="text-4xl text-gray-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Visibility</p>
                 <p>{weatherData.visibility / 1000} km</p>
               </div>
             </div>
-            <div className="flex items-center bg-pink-100 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiSunrise className="text-4xl text-pink-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Sunrise</p>
                 <p>{new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}</p>
               </div>
             </div>
-            <div className="flex items-center bg-purple-100 p-4 rounded-lg shadow-lg">
+            <div className="flex items-center bg-blue-100 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
               <WiSunset className="text-4xl text-purple-600 mr-2" />
               <div>
                 <p className="text-sm font-semibold">Sunset</p>
@@ -498,7 +498,7 @@ const TheWeatherResult = () => {
           </div>
   </div>
 )}
-
+</div>
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
         <div className="modal-content">
           <button onClick={closeModal} className="modal-close-button">&times;</button>
