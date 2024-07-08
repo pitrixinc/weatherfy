@@ -18,6 +18,19 @@ const TheWeatherResult = () => {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
 
+  const [headerMessages] = useState([
+    'Welcome to the Weather Forecast',
+    'Explore Weather Insights',
+    'Discover Local Weather',
+    'Weather Data for Today',
+    'Current Weather Information',
+    'Your Local Weather Report',
+    'Weather Updates for You',
+    'Stay Informed About Weather',
+    'Weather Forecasts Nearby',
+    'Weather Insights Available'
+  ]);
+
   useEffect(() => {
     if (location) {
       fetchWeatherData();
@@ -113,19 +126,6 @@ const TheWeatherResult = () => {
     );
   };
 
-  const [headerMessages] = useState([
-    `Welcome to the Weather Forecast for ${location}`,
-    `Explore Weather Insights for ${location}`,
-    `Discover Local Weather for ${location}`,
-    `Weather Data for Today for ${location}`,
-    `Current Weather Information for ${location}`,
-    `Your Local Weather Report for ${location}`,
-    `Weather Updates for for ${location}`,
-    `Stay Informed About Weather for ${location}`,
-    `Weather Forecasts Nearby ${location}`,
-    `Weather Insights Available for ${location}`
-  ]);
-
   return (
     <div className="container mx-auto md:px-4 py-2 md:py-8">
       <Head>
@@ -142,15 +142,16 @@ const TheWeatherResult = () => {
                 className="w-full h-64 object-cover"
               />
               <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 p-2 text-white">
-                <p className="font-semibold tracking-widest">
+              <p className="font-semibold text-center tracking-widest">
                   <Typewriter
                     options={{
                       strings: headerMessages,
                       autoStart: true,
                       loop: true,
                     }}
-                  />
+                  /> 
                 </p>
+                <span className="font-semibold tracking-widest">{location}</span>
               </div>
             </div>
           )}
@@ -191,15 +192,16 @@ const TheWeatherResult = () => {
                 className="w-full h-64 object-cover rounded-lg"
               />
               <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 p-2 text-white">
-                <p className="font-semibold tracking-widest">
+                <p className="font-semibold text-center tracking-widest">
                   <Typewriter
                     options={{
                       strings: headerMessages,
                       autoStart: true,
                       loop: true,
                     }}
-                  />
+                  /> 
                 </p>
+                <span className="font-semibold tracking-widest">{location}</span>
               </div>
             </div>
           )}
