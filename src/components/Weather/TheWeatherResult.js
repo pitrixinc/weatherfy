@@ -130,7 +130,7 @@ const TheWeatherResult = () => {
           </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="md:row-span-2 h-[710px] overflow-y-auto">
+        <div className="md:row-span-2 h-[410px] md:h-[710px] overflow-y-auto">
         {/*  <h2 className="md:text-2xl text-xl p-2 font-bold">{location} Weather Article</h2> */}
           <div className="text-md ">
             {typedArticle.map((paragraph, index) => (
