@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Head from 'next/head';
 import Modal from 'react-modal';
+import Typewriter from 'typewriter-effect'; // Import Typewriter
 
 const TheWeatherResult = () => {
   const router = useRouter();
@@ -112,29 +113,54 @@ const TheWeatherResult = () => {
     );
   };
 
+  const [headerMessages] = useState([
+    `Welcome to the Weather Forecast for ${location}`,
+    `Explore Weather Insights for ${location}`,
+    `Discover Local Weather for ${location}`,
+    `Weather Data for Today for ${location}`,
+    `Current Weather Information for ${location}`,
+    `Your Local Weather Report for ${location}`,
+    `Weather Updates for for ${location}`,
+    `Stay Informed About Weather for ${location}`,
+    `Weather Forecasts Nearby ${location}`,
+    `Weather Insights Available for ${location}`
+  ]);
+
   return (
-    <div className="container mx-auto md:px-4 py-8">
+    <div className="container mx-auto md:px-4 md:py-8">
       <Head>
         <title>Weather Result for {location}</title>
       </Head>
-      <h1 className="md:text-3xl text-2xl p-2 font-bold mb-4">Weather Result for {location}</h1>
+    {/*  <h1 className="md:text-3xl text-2xl p-2 font-bold mb-4">Weather Result for {location}</h1> */}
       
       <div className="mb-4 block md:hidden">
-            {images.length > 0 && (
+      {images.length > 0 && (
+            <div className="relative">
               <img
                 src={images[currentImageIndex]}
                 alt={location}
-                className="w-full h-64 object-cover mb-4"
+                className="w-full h-64 object-cover"
               />
-            )}
+              <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 p-2 text-white">
+                <p className="font-semibold tracking-widest">
+                  <Typewriter
+                    options={{
+                      strings: headerMessages,
+                      autoStart: true,
+                      loop: true,
+                    }}
+                  />
+                </p>
+              </div>
+            </div>
+          )}
           </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="md:row-span-2 h-[410px] md:h-[710px] overflow-y-auto">
+          <div className="block md:hidden h-[410px] overflow-y-auto">
         {/*  <h2 className="md:text-2xl text-xl p-2 font-bold">{location} Weather Article</h2> */}
           <div className="text-md ">
             {typedArticle.map((paragraph, index) => (
-              <p key={index} className="text-md leading-relaxed text-gray-700 bg-white p-4 rounded-sm shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-8 first-letter:text-4xl first-letter:font-bold first-letter:text-gray-900 first-line:tracking-widest">
+              <p key={index} className="text-sm leading-relaxed text-gray-700 bg-white p-4 rounded-sm shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-0 first-letter:text-lg first-letter:font-bold first-letter:text-gray-900 first-line:tracking-widest">
                 {paragraph.startsWith('#') ? (
                   <strong>{paragraph.replace(/^#+\s*/, '')}</strong>
                 ) : (
@@ -152,22 +178,62 @@ const TheWeatherResult = () => {
             )}
           </div>
         </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
         <div className="flex flex-col justify-between">
-          <div className="mb-4 hidden md:block">
-            {images.length > 0 && (
+        <div className="mb-4 hidden md:block relative">
+          {images.length > 0 && (
+            <div className="relative">
               <img
                 src={images[currentImageIndex]}
                 alt={location}
-                className="w-full h-64 object-cover mb-4"
+                className="w-full h-64 object-cover rounded-lg"
               />
-            )}
-          </div>
+              <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 p-2 text-white">
+                <p className="font-semibold tracking-widest">
+                  <Typewriter
+                    options={{
+                      strings: headerMessages,
+                      autoStart: true,
+                      loop: true,
+                    }}
+                  />
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
           <div className={`md:w-full ${modalIsOpen ? 'hidden' : ''}`}>
             <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
               {latitude && longitude && (
                 <MapComponent latitude={latitude} longitude={longitude} location={location} />
               )}
             </div>
+          </div>
+        </div>
+
+        <div className="hidden md:block md:row-span-2 h-[410px] md:h-[710px] overflow-y-auto">
+        {/*  <h2 className="md:text-2xl text-xl p-2 font-bold">{location} Weather Article</h2> */}
+          <div className="text-md ">
+            {typedArticle.map((paragraph, index) => (
+              <p key={index} className="text-sm leading-relaxed text-gray-700 bg-white p-4 rounded-sm shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-0 first-letter:text-lg first-letter:font-bold first-letter:text-gray-900 first-line:tracking-widest">
+                {paragraph.startsWith('#') ? (
+                  <strong>{paragraph.replace(/^#+\s*/, '')}</strong>
+                ) : (
+                  formatParagraph(paragraph)
+                )}
+              </p>
+            ))}
+            {isTyping && (
+              <button
+                onClick={stopTyping}
+                className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg"
+              >
+                Stop Writing
+              </button>
+            )}
           </div>
         </div>
       </div>
