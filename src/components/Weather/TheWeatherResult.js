@@ -119,6 +119,16 @@ const TheWeatherResult = () => {
       </Head>
       <h1 className="md:text-3xl text-2xl p-2 font-bold mb-4">Weather Result for {location}</h1>
       
+      <div className="mb-4 block md:hidden">
+            {images.length > 0 && (
+              <img
+                src={images[currentImageIndex]}
+                alt={location}
+                className="w-full h-64 object-cover mb-4"
+              />
+            )}
+          </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="md:row-span-2 h-[710px] overflow-y-auto">
         {/*  <h2 className="md:text-2xl text-xl p-2 font-bold">{location} Weather Article</h2> */}
@@ -143,7 +153,7 @@ const TheWeatherResult = () => {
           </div>
         </div>
         <div className="flex flex-col justify-between">
-          <div className="mb-4">
+          <div className="mb-4 hidden md:block">
             {images.length > 0 && (
               <img
                 src={images[currentImageIndex]}
