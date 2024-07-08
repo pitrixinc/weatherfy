@@ -24,10 +24,12 @@ const Banner = () => {
             </div>
             <div className="max-w-lg lg:mx-12 lg:order-2">
               <h1 className="text-3xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">
-                The best Apple Watch apps
+              Your Ultimate Weather Companion
               </h1>
               <p className="mt-4 text-gray-600 dark:text-gray-300">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut quia asperiores alias vero magnam recusandae adipisci ad vitae laudantium quod rem voluptatem eos accusantium cumque.
+              Welcome to WeatherWise! Discover precise, up-to-date weather insights tailored for you. 
+              Get started by searching your location below and experience the most reliable weather forecast. 
+              Stay prepared with WeatherWise!
               </p>
               <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
                 <input
