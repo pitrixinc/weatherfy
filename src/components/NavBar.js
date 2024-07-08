@@ -11,12 +11,12 @@ export default function NavBar() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchLocation) {
-      router.push(`/weather-result?location=${searchLocation}`);
+      window.location.href = `/weather-result?location=${searchLocation}`;
     }
   };
 
   const handleCountryClick = (country) => {
-    router.push(`/weather-result?location=${country}`);
+    window.location.href = `/weather-result?location=${country}`;
   };
 
   const countries = countryList().getLabels();
