@@ -4,6 +4,25 @@ import axios from 'axios';
 import Head from 'next/head';
 import Modal from 'react-modal';
 import Typewriter from 'typewriter-effect'; // Import Typewriter
+import {
+  WiThermometer,
+  WiHumidity,
+  WiBarometer,
+  WiStrongWind,
+  WiDaySunny,
+  WiSunrise,
+  WiSunset,
+  WiRain,
+  WiCloud,
+  WiSnow,
+  WiFog,
+  WiRaindrop,
+  WiDayCloudy,
+  WiNightClear,
+  WiNightCloudy,
+} from 'react-icons/wi';
+import { Line } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 const TheWeatherResult = () => {
   const router = useRouter();
@@ -17,6 +36,7 @@ const TheWeatherResult = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [hourlyForecast, setHourlyForecast] = useState([]);
 
   const [headerMessages] = useState([
     'Welcome to the Weather Forecast',
@@ -35,6 +55,7 @@ const TheWeatherResult = () => {
     if (location) {
       fetchWeatherData();
       fetchAiContent();
+      fetchHourlyForecast();
       fetchImages(); // Call fetchImages when location changes
     }
   }, [location]);
@@ -52,6 +73,19 @@ const TheWeatherResult = () => {
       setWeatherData(null);
     }
   };
+
+  const fetchHourlyForecast = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
+      );
+      setHourlyForecast(response.data.list.slice(0, 24)); // Get 24 hours forecast
+    } catch (error) {
+      console.error('Error fetching hourly forecast:', error);
+      setHourlyForecast([]);
+    }
+  };
+
 
   const fetchAiContent = async () => {
     try {
@@ -125,6 +159,67 @@ const TheWeatherResult = () => {
       index % 2 === 1 ? <strong key={index}>{text}</strong> : text
     );
   };
+
+  const renderWeatherIcon = (icon) => {
+    switch (icon) {
+      case '01d':
+        return <WiDaySunny className="text-4xl text-red-600 mr-2" />;
+      case '01n':
+        return <WiNightClear className="text-4xl text-black mr-2" />;
+      case '02d':
+      case '03d':
+      case '04d':
+        return <WiDayCloudy className="text-4xl text-gray-600 mr-2" />;
+      case '02n':
+      case '03n':
+      case '04n':
+        return <WiNightCloudy className="text-4xl text-blue-600 mr-2" />;
+      case '09d':
+      case '09n':
+      case '10d':
+      case '10n':
+        return <WiRain className="text-4xl text-orange-600 mr-2" />;
+      case '11d':
+      case '11n':
+        return <WiCloud className="text-4xl text-rose-600 mr-2" />;
+      case '13d':
+      case '13n':
+        return <WiSnow className="text-4xl text-violet-600 mr-2" />;
+      case '50d':
+      case '50n':
+        return <WiFog className="text-4xl text-brown-600 mr-2" />;
+      default:
+        return <WiDaySunny className="text-4xl text-indigo-600 mr-2"/>;
+    }
+  };
+
+  const hourlyLabels = hourlyForecast.map((hour) =>
+    new Date(hour.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  );
+
+  const temperatureData = hourlyForecast.map((hour) => hour.main.temp);
+  const feelsLikeData = hourlyForecast.map((hour) => hour.main.feels_like);
+
+  const chartData = {
+    labels: hourlyLabels,
+    datasets: [
+      {
+        label: 'Temperature (°C)',
+        data: temperatureData,
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        fill: true,
+      },
+      {
+        label: 'Feels Like (°C)',
+        data: feelsLikeData,
+        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        fill: true,
+      },
+    ],
+  };
+
 
   return (
     <div className="container mx-auto md:px-4 py-2 md:py-8">
@@ -241,17 +336,168 @@ const TheWeatherResult = () => {
       </div>
 
       {weatherData ? (
-        <div>
-          <div className="bg-white shadow-md rounded-lg p-4">
-            <h2 className="text-2xl font-semibold mb-2">Weather Data</h2>
-            <p>Temperature: {weatherData.main.temp}°C</p>
-            <p>Humidity: {weatherData.main.humidity}%</p>
-            <p>Wind Speed: {weatherData.wind.speed} m/s</p>
+        <div className="bg-white shadow-md rounded-lg p-4 mt-8">
+          <h2 className="text-2xl font-semibold mb-4">Current Weather Data</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg">
+              <WiThermometer className="text-4xl text-blue-600 mr-2" />
+              <div>
+                <p className="text-lg font-semibold">Temperature</p>
+                <p>Current: {weatherData.main.temp}°C</p>
+                <p>Min: {weatherData.main.temp_min}°C, Max: {weatherData.main.temp_max}°C</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-green-50 p-4 rounded-lg shadow-lg">
+              <WiThermometer className="text-4xl text-green-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Feels Like</p>
+                <p>{weatherData.main.feels_like}°C</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-yellow-50 p-4 rounded-lg shadow-lg">
+              <WiBarometer className="text-4xl text-yellow-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Pressure</p>
+                <p>{weatherData.main.pressure} hPa</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-purple-50 p-4 rounded-lg shadow-lg">
+              <WiHumidity className="text-4xl text-purple-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Humidity</p>
+                <p>{weatherData.main.humidity}%</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-red-50 p-4 rounded-lg shadow-lg">
+              {renderWeatherIcon(weatherData.weather[0].icon)}
+              <div>
+                <p className="text-sm font-semibold">Conditions</p>
+                <p>{weatherData.weather[0].description}</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-indigo-50 p-4 rounded-lg shadow-lg">
+              <WiCloud className="text-4xl text-indigo-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Cloudiness</p>
+                <p>{weatherData.clouds.all}%</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-pink-50 p-4 rounded-lg shadow-lg">
+              <WiStrongWind className="text-4xl text-pink-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Wind</p>
+                <p>{weatherData.wind.speed} m/s, {weatherData.wind.deg}°</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-teal-50 p-4 rounded-lg shadow-lg">
+              <WiRaindrop className="text-4xl text-teal-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Precipitation</p>
+                <p>{weatherData.rain ? weatherData.rain['1h'] : '0'} mm</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-orange-50 p-4 rounded-lg shadow-lg">
+              <WiDaySunny className="text-4xl text-orange-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">UV Index</p>
+                <p>{weatherData.uv_index || 'N/A'}</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-gray-50 p-4 rounded-lg shadow-lg">
+              <WiFog className="text-4xl text-gray-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Visibility</p>
+                <p>{weatherData.visibility / 1000} km</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-pink-100 p-4 rounded-lg shadow-lg">
+              <WiSunrise className="text-4xl text-pink-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Sunrise</p>
+                <p>{new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}</p>
+              </div>
+            </div>
+            <div className="flex items-center bg-purple-100 p-4 rounded-lg shadow-lg">
+              <WiSunset className="text-4xl text-purple-600 mr-2" />
+              <div>
+                <p className="text-sm font-semibold">Sunset</p>
+                <p>{new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}</p>
+              </div>
+            </div>
           </div>
         </div>
+
       ) : (
         <p className="text-xl">No weather information found in {location}</p>
       )}
+
+{hourlyForecast.length > 0 && (
+  <div className="mt-8">
+    <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">Hourly Forecast</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {hourlyForecast.map((hour, index) => (
+        <div
+          key={index}
+          className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300"
+        >
+          <div className="text-center mb-4">
+            <p className="text-lg font-semibold text-gray-700">
+              {new Date(hour.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </p>
+            <div className="flex justify-center items-center mb-2">
+              {renderWeatherIcon(hour.weather[0].icon)}
+              <p className="text-md text-gray-600 ml-2 capitalize">{hour.weather[0].description}</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <div className="hourly-data-item bg-blue-100 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Temperature</p>
+              <span className="block text-sm">{hour.main.temp}°C</span>
+            </div>
+            <div className="hourly-data-item bg-blue-200 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Feels Like</p>
+              <span className="block text-sm">{hour.main.feels_like}°C</span>
+            </div>
+            <div className="hourly-data-item bg-blue-300 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Pressure</p>
+              <span className="block text-sm">{hour.main.pressure} hPa</span>
+            </div>
+            <div className="hourly-data-item bg-blue-400 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Humidity</p>
+              <span className="block text-sm">{hour.main.humidity}%</span>
+            </div>
+            <div className="hourly-data-item bg-blue-500 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Cloudiness</p>
+              <span className="block text-sm">{hour.clouds.all}%</span>
+            </div>
+            <div className="hourly-data-item bg-blue-300 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Wind</p>
+              <span className="block text-sm">{hour.wind.speed} m/s, {hour.wind.deg}°</span>
+            </div>
+            <div className="hourly-data-item bg-blue-400 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Visibility</p>
+              <span className="block text-sm">{(hour.visibility / 1000).toFixed(1)} km</span>
+            </div>
+            <div className="hourly-data-item bg-blue-500 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Precipitation</p>
+              <span className="block text-sm">{hour.rain ? hour.rain['1h'] : '0'} mm</span>
+            </div>
+            <div className="hourly-data-item bg-blue-300 p-2 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700">Probability of Precipitation</p>
+              <span className="block text-sm">{(hour.pop * 100).toFixed(1)}%</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="mt-8">
+            <h2 className="text-2xl font-bold mb-4 text-center">Temperature Graph</h2>
+            <div className="bg-white p-4 rounded-lg shadow-lg w-full h-[600px]">
+              <Line data={chartData} />
+            </div>
+          </div>
+  </div>
+)}
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
         <div className="modal-content">
