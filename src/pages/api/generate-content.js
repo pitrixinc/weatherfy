@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const articleResult = await model.generateContent([
-      `in 50 words, write a detailed weather history for ${location}. Format the response with headers and paragraphs.`,
+      `in 500 words, write a detailed weather overview and key weather info for ${location}. Format the response with headers and paragraphs.`,
     ]);
 
     // For image generation

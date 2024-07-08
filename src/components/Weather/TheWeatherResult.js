@@ -1,6 +1,3 @@
-
-
-// Your component remains the same with the previous modifications
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -108,34 +105,30 @@ const TheWeatherResult = () => {
     setModalIsOpen(false);
   };
 
+  const formatParagraph = (paragraph) => {
+    // Replace **text** with <strong>text</strong>
+    return paragraph.split('**').map((text, index) => 
+      index % 2 === 1 ? <strong key={index}>{text}</strong> : text
+    );
+  };
+
   return (
     <div className="container mx-auto md:px-4 py-8">
       <Head>
         <title>Weather Result for {location}</title>
       </Head>
       <h1 className="md:text-3xl text-2xl p-2 font-bold mb-4">Weather Result for {location}</h1>
-      {weatherData && (
-        <div>
-          {images.length > 0 && (
-            <img
-              src={images[currentImageIndex]}
-              alt={location}
-              className="w-full h-64 object-cover mb-4"
-            />
-          )}
-        </div>
-      )}
-
-      <div className="bg-white shadow-md rounded-sm md:p-4 mt-4 md:flex md:justify-between w-[100%]  border-gray-200">
-        <div className='md:w-[50%] h-[410px] overflow-y-auto'>
-          <h2 className="md:text-2xl text-xl p-2 font-bold">Weather History</h2>
-          <div className="text-lg">
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="md:row-span-2 h-[710px] overflow-y-auto">
+        {/*  <h2 className="md:text-2xl text-xl p-2 font-bold">{location} Weather Article</h2> */}
+          <div className="text-md ">
             {typedArticle.map((paragraph, index) => (
-              <p key={index} className="text-lg leading-relaxed text-gray-700 bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-8 first-letter:text-4xl first-letter:font-bold first-letter:text-gray-900 first-line:uppercase first-line:tracking-widest">
+              <p key={index} className="text-md leading-relaxed text-gray-700 bg-white p-4 rounded-sm shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-8 first-letter:text-4xl first-letter:font-bold first-letter:text-gray-900 first-line:tracking-widest">
                 {paragraph.startsWith('#') ? (
                   <strong>{paragraph.replace(/^#+\s*/, '')}</strong>
                 ) : (
-                  paragraph
+                  formatParagraph(paragraph)
                 )}
               </p>
             ))}
@@ -149,16 +142,25 @@ const TheWeatherResult = () => {
             )}
           </div>
         </div>
-        <div className={`md:w-[50%] ${modalIsOpen ? 'hidden' : ''}`}>
-          <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
-            {latitude && longitude && (
-              <MapComponent latitude={latitude} longitude={longitude} location={location} />
+        <div className="flex flex-col justify-between">
+          <div className="mb-4">
+            {images.length > 0 && (
+              <img
+                src={images[currentImageIndex]}
+                alt={location}
+                className="w-full h-64 object-cover mb-4"
+              />
             )}
+          </div>
+          <div className={`md:w-full ${modalIsOpen ? 'hidden' : ''}`}>
+            <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
+              {latitude && longitude && (
+                <MapComponent latitude={latitude} longitude={longitude} location={location} />
+              )}
+            </div>
           </div>
         </div>
       </div>
-
-      <hr />
 
       {weatherData ? (
         <div>
