@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaTemperatureHigh, FaWind, FaTint, FaEye, FaThermometerHalf, FaCloudSun, FaArrowUp, FaArrowDown, FaSun } from 'react-icons/fa';
+import { FaTemperatureHigh, FaWind, FaTint, FaEye, FaThermometerHalf, FaCloudSun, FaArrowUp, FaSun } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
 
 const MyWeather = () => {
@@ -10,23 +10,17 @@ const MyWeather = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-        },
-        (error) => {
-          setError(error.message);
-          setLoading(false);
-        }
-      );
-    } else {
-      setError('Geolocation is not supported by this browser.');
-      setLoading(false);
-    }
+    const fetchLocation = async () => {
+      try {
+        const response = await axios.get(`https://ipinfo.io/json?token=${process.env.NEXT_PUBLIC_IPINFO_API_KEY}`);
+        const [latitude, longitude] = response.data.loc.split(',');
+        setLocation({ latitude, longitude });
+      } catch (error) {
+        setError('Error fetching location data.');
+        setLoading(false);
+      }
+    };
+    fetchLocation();
   }, []);
 
   useEffect(() => {
@@ -54,6 +48,7 @@ const MyWeather = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
 
   return (
     <div className="my-weather-container bg-gradient-to-r from-blue-0 to-blue-0 p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-50 transition-transform duration-300">
