@@ -23,6 +23,10 @@ import {
 } from 'react-icons/wi';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
+import TemperatureGraph from './Graphs/TemperatureGraph';
+import WindSpeedGraph from './Graphs/WindSpeedGraph';
+import HumidityGraph from './Graphs/HumidityGraph';
+import PrecipitationGraph from './Graphs/PrecipitationGraph';
 
 const TheWeatherResult = () => {
   const router = useRouter();
@@ -37,25 +41,27 @@ const TheWeatherResult = () => {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [hourlyForecast, setHourlyForecast] = useState([]);
+  const [forecastData, setForecastData] = useState(null);
 
-  const [headerMessages] = useState([
-    'Welcome to the Weather Forecast',
-    'Explore Weather Insights',
-    'Discover Local Weather',
-    'Weather Data for Today',
-    'Current Weather Information',
-    'Your Local Weather Report',
-    'Weather Updates for You',
-    'Stay Informed About Weather',
-    'Weather Forecasts Nearby',
-    'Weather Insights Available'
-  ]);
+  const headerMessages = [
+    `Weather Result for ${location}`,
+    `${location} Weather Update`,
+    `Current Weather in ${location}`,
+    `Latest Weather for ${location}`,
+    `${location} Weather Report`,
+    `Weather Details for ${location}`,
+    `${location} Climate Overview`,
+    `Today's Weather in ${location}`,
+    `${location} Forecast`,
+    `Weather Information for ${location}`,
+  ]; 
 
   useEffect(() => {
     if (location) {
       fetchWeatherData();
       fetchAiContent();
       fetchHourlyForecast();
+      fetchForecastData();
       fetchImages(); // Call fetchImages when location changes
     }
   }, [location]);
@@ -73,6 +79,8 @@ const TheWeatherResult = () => {
       setWeatherData(null);
     }
   };
+ 
+
 
   const fetchHourlyForecast = async () => {
     try {
@@ -86,6 +94,18 @@ const TheWeatherResult = () => {
     }
   };
 
+  const fetchForecastData = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&q=${location}&days=7`
+      );
+      setForecastData(response.data.forecast.forecastday);
+    } catch (error) {
+      console.error('Error fetching forecast data:', error);
+      setForecastData(null);
+    }
+  };
+ 
 
   const fetchAiContent = async () => {
     try {
@@ -219,7 +239,6 @@ const TheWeatherResult = () => {
       },
     ],
   };
-
 
   return (
     <div className="container mx-auto md:px-4 py-2 md:py-8">
@@ -492,13 +511,118 @@ const TheWeatherResult = () => {
     </div>
     <div className="mt-8">
             <h2 className="text-2xl font-bold mb-4 text-center">Temperature Graph</h2>
-            <div className="bg-white p-4 rounded-lg shadow-lg w-full h-[600px]">
+            <div className="bg-white p-4 rounded-lg shadow-lg w-full h-[600px] flex items-center justify-center">
               <Line data={chartData} />
             </div>
           </div>
   </div>
 )}
 </div>
+
+
+<div className='h-[610px] overflow-y-auto'>
+{weatherData ? (
+        <div>
+         {/* <div className="bg-white shadow-md rounded-lg p-4 mb-4">
+            <h2 className="text-2xl font-semibold mb-2">Current Weather Data</h2>
+            <p>Temperature: {weatherData.main.temp}°C</p>
+            <p>Humidity: {weatherData.main.humidity}%</p>
+            <p>Wind Speed: {weatherData.wind.speed} m/s</p>
+</div> */}
+              {forecastData && (
+            <div className="bg-white shadow-md rounded-lg p-4">
+              <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">7-Day Forecast</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {forecastData.map((day, index) => (<div>
+                  <div
+                    key={index}
+                    className="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300"
+                  >
+                    <div className="text-center mb-4">
+                      <p className="text-lg font-semibold text-gray-700">
+                        {new Date(day.date).toLocaleDateString()}
+                      </p>
+                      <div className="flex justify-center items-center mb-2">
+                        {renderWeatherIcon(day.day.condition.icon)}
+                        <p className="text-md text-gray-600 ml-2 capitalize">{day.day.condition.text}</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-green-100 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Temperature</p>
+                        <span className="block text-sm">{day.day.maxtemp_c}°C / {day.day.mintemp_c}°C</span>
+                      </div>
+                      <div className="bg-green-200 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Humidity</p>
+                        <span className="block text-sm">{day.day.avghumidity}%</span>
+                      </div>
+                      <div className="bg-green-300 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Wind Speed</p>
+                        <span className="block text-sm">{day.day.maxwind_kph} kph</span>
+                      </div>
+                      <div className="bg-green-400 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Cloudiness</p>
+                        <span className="block text-sm">{day.day.cloud}%</span>
+                      </div>
+                      <div className="bg-green-500 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Precipitation</p>
+                        <span className="block text-sm">{day.day.totalprecip_mm} mm</span>
+                      </div>
+                      <div className="bg-green-300 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">UV Index</p>
+                        <span className="block text-sm">{day.day.uv}</span>
+                      </div>
+                      <div className="bg-green-400 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Sunrise</p>
+                        <span className="block text-sm">{day.astro.sunrise}</span>
+                      </div>
+                      <div className="bg-green-500 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Sunset</p>
+                        <span className="block text-sm">{day.astro.sunset}</span>
+                      </div>
+                      <div className="bg-green-300 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Moonrise</p>
+                        <span className="block text-sm">{day.astro.moonrise}</span>
+                      </div>
+                      <div className="bg-green-400 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Moonset</p>
+                        <span className="block text-sm">{day.astro.moonset}</span>
+                      </div>
+                      <div className="bg-green-500 p-2 rounded-lg">
+                        <p className="text-sm font-semibold text-gray-700">Moon Phase</p>
+                        <span className="block text-sm">{day.astro.moon_phase}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ))}
+              </div>
+              {forecastData && (
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
+                  <div className="bg-green-200 p-4 rounded-lg shadow-md">
+                  <TemperatureGraph forecastData={forecastData} />
+                  </div>
+                  <div className="bg-green-200 p-4 rounded-lg shadow-md">
+                  <WindSpeedGraph forecastData={forecastData} />
+                  </div>
+                  <div className="bg-green-200 p-4 rounded-lg shadow-md">
+                  <HumidityGraph forecastData={forecastData} />
+                  </div>
+                  <div className="bg-green-200 p-4 rounded-lg shadow-md">
+                  <PrecipitationGraph forecastData={forecastData} />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          
+        </div>
+      ) : (
+        <p className="text-xl">No weather information found for {location}.</p>
+      )}
+</div>
+
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
         <div className="modal-content">
           <button onClick={closeModal} className="modal-close-button">&times;</button>
