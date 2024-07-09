@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { BsSearch } from 'react-icons/bs';
 import countryList from 'react-select-country-list';
+import Link from 'next/link';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,9 +29,9 @@ export default function NavBar() {
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <a href="/">
+                <Link href="/">
                   <img className="w-auto md:h-10 h-8 sm:h-7" src="https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png" alt="logo" />
-                </a>
+                </Link>
 
                 <div className="hidden mx-10 md:block">
                   <div className="relative">
