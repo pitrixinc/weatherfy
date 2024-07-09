@@ -265,7 +265,7 @@ const TheWeatherResult = () => {
                     }}
                   /> 
                 </p>
-                <span className="font-semibold tracking-widest">{location}</span>
+                {/* <span className="font-semibold tracking-widest">{location}</span> */}
               </div>
             </div>
           )}
@@ -315,7 +315,7 @@ const TheWeatherResult = () => {
                     }}
                   /> 
                 </p>
-                <span className="font-semibold tracking-widest">{location}</span>
+                {/* <span className="font-semibold tracking-widest">{location}</span> */}
               </div>
             </div>
           )}
@@ -521,14 +521,7 @@ const TheWeatherResult = () => {
 
 
 <div className='h-[610px] overflow-y-auto'>
-{weatherData ? (
-        <div>
-         {/* <div className="bg-white shadow-md rounded-lg p-4 mb-4">
-            <h2 className="text-2xl font-semibold mb-2">Current Weather Data</h2>
-            <p>Temperature: {weatherData.main.temp}°C</p>
-            <p>Humidity: {weatherData.main.humidity}%</p>
-            <p>Wind Speed: {weatherData.wind.speed} m/s</p>
-</div> */}
+
               {forecastData && (
             <div className="bg-white shadow-md rounded-lg p-4">
               <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">7-Day Forecast</h2>
@@ -615,12 +608,7 @@ const TheWeatherResult = () => {
               )}
             </div>
           )}
-
-          
-        </div>
-      ) : (
-        <p className="text-xl">No weather information found for {location}.</p>
-      )}
+      
 </div>
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
