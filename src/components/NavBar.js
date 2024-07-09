@@ -22,7 +22,7 @@ export default function NavBar() {
   const countries = countryList().getLabels();
 
   return (
-    <div className="">
+    <div className="sticky">
       <nav className="relative bg-white shadow dark:bg-gray-800">
         <div className="container px-6 py-3 mx-auto">
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">

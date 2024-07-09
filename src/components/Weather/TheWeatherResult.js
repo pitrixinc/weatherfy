@@ -27,6 +27,8 @@ import TemperatureGraph from './Graphs/TemperatureGraph';
 import WindSpeedGraph from './Graphs/WindSpeedGraph';
 import HumidityGraph from './Graphs/HumidityGraph';
 import PrecipitationGraph from './Graphs/PrecipitationGraph';
+import AQI from './WeatherFeatures/AQI';
+import RadarMap from './WeatherFeatures/RadarMap';
 
 const TheWeatherResult = () => {
   const router = useRouter();
@@ -610,6 +612,9 @@ const TheWeatherResult = () => {
                   </div>
                 </div>
       )}
+
+<AQI location={location} />
+<div className="hidden md:block"> {latitude && longitude && <RadarMap latitude={latitude} longitude={longitude} />} </div>
       
 </div>
 
