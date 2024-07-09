@@ -6,6 +6,7 @@ import Weather from '../components/Weather';
 import Spinner from '../components/Spinner';
 import NavBar from '@/components/NavBar';
 import Banner from '@/components/Banner';
+import MyWeather from '@/components/Weather/MyWeather';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,8 @@ export default function Home() {
         <NavBar/>
         <main>
           <Banner/>
-          <h1 className="text-4xl font-bold text-center">Weather App</h1>
+          <MyWeather/>
+        {/*  <h1 className="text-4xl font-bold text-center">Weather App</h1> */}
           
         </main>
       </>
