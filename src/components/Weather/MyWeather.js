@@ -51,9 +51,9 @@ const MyWeather = () => {
 
 
   return (
-    <div className="my-weather-container bg-gradient-to-r from-blue-0 to-blue-0 p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-50 transition-transform duration-300">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Current Weather of {weatherData.location.country}</h2>
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="my-weather-container bg-gradient-to-r from-blue-0 to-blue-0 md:p-6 p-1 md:rounded-lg rounded-sm shadow-lg hover:shadow-xl transform hover:scale-90 transition-transform duration-300">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">You live in {weatherData.location.country}</h2>
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 md:gap-6 gap-1">
         {weatherData && (
           <>
             <div className="weather-item flex items-center bg-cover bg-center p-4 rounded-lg shadow-md relative"
