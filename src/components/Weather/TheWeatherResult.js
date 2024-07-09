@@ -593,8 +593,8 @@ const TheWeatherResult = () => {
             </div>
           )}
       
-      {/**
-       
+      
+      {forecastData && (
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6'>
                   <div className="bg-green-200 p-4 rounded-lg shadow-md">
                   <TemperatureGraph forecastData={forecastData} />
@@ -609,8 +609,8 @@ const TheWeatherResult = () => {
                   <PrecipitationGraph forecastData={forecastData} />
                   </div>
                 </div>
-          
-       */}
+      )}
+      
 </div>
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
