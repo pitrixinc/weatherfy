@@ -106,7 +106,7 @@ export default function NavBar() {
               </div>
             </div>
           </div>
-
+{/*
           <div className="py-3 mt-3 -mx-3 overflow-y-auto whitespace-nowrap scroll-hidden">
             {countries.map((country, index) => (
               <a
@@ -119,6 +119,7 @@ export default function NavBar() {
               </a>
             ))}
           </div>
+            */}
         </div>
       </nav>
     </div>

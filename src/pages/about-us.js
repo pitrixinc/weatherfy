@@ -24,13 +24,15 @@ const AboutUs = () => {
             <div>
               <h3 className="text-2xl font-bold text-gray-900">Our Mission</h3>
               <p className="mt-4 text-gray-600">
-                [Placeholder for company mission. Describe what the company aims to achieve and how it plans to get there.]
+              Our mission at Weatherfy is to empower people with the information they need to make informed decisions, stay safe, and thrive, regardless of the weather conditions. We aim to deliver the most accurate, 
+              timely, and user-friendly weather forecasts through our state-of-the-art technology and expert analysis.
               </p>
             </div>
             <div>
               <h3 className="text-2xl font-bold text-gray-900">Our Vision</h3>
               <p className="mt-4 text-gray-600">
-                [Placeholder for company vision. Outline the company's long-term goals and aspirations.]
+              We envision a world where everyone has access to reliable weather information at their fingertips, enabling them to navigate their daily lives and plan for the future with confidence. Weatherfy strives to be the leading global provider of weather data and insights, 
+              continuously pushing the boundaries of what is possible in weather forecasting.
               </p>
             </div>
           </section>
