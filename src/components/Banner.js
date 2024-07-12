@@ -50,7 +50,7 @@ const Banner = () => {
             </div>
           </div>
           <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-            <img className="w-full h-full max-w-md" src="https://merakiui.com/images/components/Email-campaign-bro.svg" alt="email illustration vector art" />
+            <img className="w-full h-[450px] max-w-md" src="https://www.gifservice.fr/img/gif-vignette-small/63c820f628b7e078f9ff940cdc4911c6/87199-flags-africa-ghana-map.gif" alt="email illustration vector art" />
           </div>
         </div>
       </div>
