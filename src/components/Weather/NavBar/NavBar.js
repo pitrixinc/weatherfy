@@ -50,7 +50,7 @@ export default function NavBar() {
                   </div>
                 </div>
               </div>
-
+{/*
               <div className="flex lg:hidden">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
@@ -69,10 +69,11 @@ export default function NavBar() {
                   )}
                 </button>
               </div>
+              */}
             </div>
-
+                  
             <div className={`absolute inset-x-0 z-20 w-full px-6 py-2 transition-all duration-300 ease-in-out bg-white top-24 dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center ${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'}`}>
-            <div className="flex flex-col md:flex-row md:mx-1">
+              <div className="flex flex-col md:flex-row md:mx-1">
               <Link className="my-2 text-sm leading-5 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:underline md:mx-4 md:my-0" href="/">
                   Home
                 </Link>

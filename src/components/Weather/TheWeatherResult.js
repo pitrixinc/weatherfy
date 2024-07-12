@@ -249,7 +249,7 @@ const TheWeatherResult = () => {
       </Head>
     {/*  <h1 className="md:text-3xl text-2xl p-2 font-bold mb-4">Weather Result for {location}</h1> */}
       
-      <div className="mb-4 block md:hidden">
+      <div className="mb-4  block md:hidden">
       {images.length > 0 && (
             <div className="relative">
               <img
