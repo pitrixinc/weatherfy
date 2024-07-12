@@ -29,8 +29,9 @@ export default function NavBar() {
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <Link href="/">
+              <Link href="/" className='flex'>
                   <img className="w-auto md:h-10 h-8 sm:h-7" src="https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png" alt="logo" />
+                  <span className='p-1 md:p-2 font-semibold text-gray-600'>Weatherfy</span>
                 </Link>
 
                 <div className="hidden mx-10 md:block">
@@ -107,7 +108,7 @@ export default function NavBar() {
               </div>
             </div>
           </div>
-
+{/*
           <div className="py-3 mt-3 -mx-3 overflow-y-auto whitespace-nowrap scroll-hidden">
             {countries.map((country, index) => (
               <a
@@ -120,6 +121,7 @@ export default function NavBar() {
               </a>
             ))}
           </div>
+            */}
         </div>
       </nav>
     </div>

@@ -8,7 +8,7 @@ const AboutUs = () => {
         <NavBar/>
         <About/>
 
-        <div className="bg-gray-100 py-10">
+        <div className="bg-gray-50 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <section className="text-center mb-16">
             <h2 className="text-4xl font-extrabold text-gray-900">Who We Are</h2>
@@ -69,34 +69,35 @@ const AboutUs = () => {
             <h3 className="text-2xl font-bold text-gray-900 text-center">Our Team</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
               <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <img className="h-24 w-24 rounded-full mx-auto" src="/path/to/image" alt="Team member photo" />
+                <img className="h-24 w-24 rounded-full mx-auto" src="https://wallpapers.com/images/hd/handsome-black-man-blue-polo-9mr9n48skon1tp1c.jpg" alt="Team member photo" />
                 <h4 className="text-xl font-semibold text-gray-800 mt-4">John Doe</h4>
                 <p className="text-gray-600">CEO</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <img className="h-24 w-24 rounded-full mx-auto" src="/path/to/image" alt="Team member photo" />
+                <img className="h-24 w-24 rounded-full mx-auto" src="https://media.istockphoto.com/id/1428235898/photo/stylish-pretty-african-woman-with-afro-hairstyle-posing-near-geometric-wall.webp?b=1&s=170667a&w=0&k=20&c=VTAKEkNcgqskN6fKJraYNTZp6xhNcxusme-uyo6pjsc=" alt="Team member photo" />
                 <h4 className="text-xl font-semibold text-gray-800 mt-4">Jane Smith</h4>
                 <p className="text-gray-600">CTO</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <img className="h-24 w-24 rounded-full mx-auto" src="/path/to/image" alt="Team member photo" />
+                <img className="h-24 w-24 rounded-full mx-auto" src="https://i.pinimg.com/236x/37/2b/88/372b88f41bb9b2fce0e13714f4e87600.jpg" alt="Team member photo" />
                 <h4 className="text-xl font-semibold text-gray-800 mt-4">Alice Johnson</h4>
                 <p className="text-gray-600">CFO</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <img className="h-24 w-24 rounded-full mx-auto" src="/path/to/image" alt="Team member photo" />
+                <img className="h-24 w-24 rounded-full mx-auto" src="https://t3.ftcdn.net/jpg/06/04/86/66/360_F_604866647_DFsEYBmBdEipKojdTDxRaXgozu615O0O.jpg" alt="Team member photo" />
                 <h4 className="text-xl font-semibold text-gray-800 mt-4">Bob Brown</h4>
                 <p className="text-gray-600">COO</p>
               </div>
             </div>
           </section>
-
+{/*
           <section className="text-center">
             <h3 className="text-2xl font-bold text-gray-900">Contact Us</h3>
             <p className="mt-4 text-gray-600">
               [Placeholder for contact information. Include email, phone number, and address.]
             </p>
           </section>
+  */}
         </div>
       </div>
     </div>

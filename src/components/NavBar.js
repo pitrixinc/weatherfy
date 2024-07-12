@@ -31,7 +31,7 @@ export default function NavBar() {
               <div className="flex items-center">
                 <Link href="/" className='flex'>
                   <img className="w-auto md:h-10 h-8 sm:h-7" src="https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png" alt="logo" />
-                  <span className='p-2 font-semibold text-gray-600'>Weatherfy</span>
+                  <span className='p-1 md:p-2 font-semibold text-gray-600'>Weatherfy</span>
                 </Link>
 
                 <div className="hidden mx-10 md:block">
