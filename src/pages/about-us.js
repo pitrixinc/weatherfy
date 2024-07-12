@@ -43,19 +43,23 @@ const AboutUs = () => {
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h4 className="text-xl font-semibold text-gray-800">Integrity</h4>
                 <p className="mt-4 text-gray-600">
-                  [Placeholder for company value. Explain the importance of integrity within your company.]
+                We uphold the highest standards of honesty and transparency in everything we do. 
+                Our users trust us to provide accurate and dependable weather information, and we take that responsibility seriously.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h4 className="text-xl font-semibold text-gray-800">Innovation</h4>
                 <p className="mt-4 text-gray-600">
-                  [Placeholder for company value. Highlight how innovation drives your business.]
+                At Weatherfy, we are committed to continuous improvement and technological advancement. 
+                We leverage the latest tools and techniques to enhance our forecasting accuracy and deliver unparalleled user experiences.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h4 className="text-xl font-semibold text-gray-800">Customer Focus</h4>
                 <p className="mt-4 text-gray-600">
-                  [Placeholder for company value. Describe your commitment to customer satisfaction.]
+                Our users are at the heart of everything we do. We listen to their needs, respond to their feedback, 
+                and work tirelessly to exceed their expectations. 
+                Our goal is to make weather forecasting as accessible and beneficial as possible.
                 </p>
               </div>
             </div>
