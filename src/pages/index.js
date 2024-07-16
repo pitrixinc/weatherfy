@@ -7,6 +7,7 @@ import Spinner from '../components/Spinner';
 import NavBar from '@/components/NavBar';
 import Banner from '@/components/Banner';
 import MyWeather from '@/components/Weather/MyWeather';
+import AccraWeather from '@/components/Weather/AccraWeather';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,7 @@ export default function Home() {
        
         <NavBar/>
         <main>
+          <AccraWeather/>
           <Banner/>
           <MyWeather/>
         {/*  <h1 className="text-4xl font-bold text-center">Weather App</h1> */}
