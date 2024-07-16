@@ -89,7 +89,7 @@ const AccraWeather = () => {
           <div className="text-3xl text-blue-600">{weatherCondition.main}</div>
         </div>
         <div className="text-lg mb-6 text-blue-900 text-center">Updated as of {new Date().toLocaleTimeString()}</div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-yellow-400 md:text-yellow-600">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-yellow-500 md:text-yellow-600">
           <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
             <WiThermometer className="text-3xl" />
             <div>
