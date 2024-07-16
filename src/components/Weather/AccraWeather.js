@@ -1,7 +1,19 @@
 // components/Weather.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { WiThermometer, WiStrongWind, WiCloudy, WiBarometer, WiHumidity, WiSunrise, WiSunset } from 'react-icons/wi';
+import {
+    WiThermometer,
+    WiStrongWind,
+    WiCloudy,
+    WiBarometer,
+    WiHumidity,
+    WiSunrise,
+    WiSunset,
+    WiDaySunny,
+    WiNightClear,
+    WiDayCloudy,
+    WiRain,
+  } from 'react-icons/wi';
 import { FaTemperatureHigh, FaEye } from 'react-icons/fa';
 
 const AccraWeather = () => {
@@ -45,25 +57,39 @@ const AccraWeather = () => {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
+  const getWeatherIcon = (condition) => {
+    switch (condition) {
+      case 'Clear':
+        return <WiDaySunny className="text-8xl md:text-9xl text-yellow-500" />;
+      case 'Clouds':
+        return <WiDayCloudy className="text-8xl md:text-9xl text-white" />;
+      case 'Rain':
+        return <WiRain className="text-8xl md:text-9xl text-blue-700" />;
+      default:
+        return <WiCloudy className="text-8xl md:text-9xl text-white" />;
+    }
+  };
+
   return (
     <div
       className=" md:p-8 font-sans bg-cover bg-center"
-      style={{ backgroundImage: "url('https://media.istockphoto.com/id/697120006/photo/amazing-cloudscape-on-the-sky.jpg?s=612x612&w=0&k=20&c=6GK5lZu6xbOpVBNw4tnyoMiu_O8JrD6Et1-TM2b6dqg=')" }}
+      style={{ backgroundImage: "url('https://thumbs.dreamstime.com/b/blue-sky-clouds-natural-background-92316401.jpg')" }}
     >
       <div className="max-w-screen-xl mx-auto bg-white bg-opacity-20 rounded-lg p-2 md:p-8 shadow-lg">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-          <h1 className="text-5xl font-bold text-blue-800">{name}, GH</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mt-1">{name}, GH</h1>
           <div className="flex space-x-3 mt-4 md:mt-0">
             <button className="p-3 rounded-full bg-blue-800 text-white shadow-md">°C</button>
             <button className="p-3 rounded-full bg-blue-800 text-white shadow-md">°F</button>
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <div className="text-8xl font-bold text-blue-800">{temp.toFixed(1)}°</div>
+          {getWeatherIcon(weatherCondition.main)}
+          <div className="text-4xl md:text-8xl font-bold text-yellow-500">{temp.toFixed(1)}°</div>
           <div className="text-3xl text-blue-600">{weatherCondition.main}</div>
         </div>
-        <div className="text-lg mb-6 text-blue-800">Updated as of {new Date().toLocaleTimeString()}</div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-blue-800">
+        <div className="text-lg mb-6 text-blue-900 text-center">Updated as of {new Date().toLocaleTimeString()}</div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-yellow-600">
           <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
             <WiThermometer className="text-3xl" />
             <div>
