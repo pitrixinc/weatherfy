@@ -90,43 +90,43 @@ const AccraWeather = () => {
         </div>
         <div className="text-lg mb-6 text-blue-900 text-center">Updated as of {new Date().toLocaleTimeString()}</div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-yellow-600">
-          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
+          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-80">
             <WiThermometer className="text-3xl" />
             <div>
               Feels Like: <span className="font-bold">{feels_like.toFixed(1)}°</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
+          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-80">
             <WiStrongWind className="text-3xl" />
             <div>
               Wind: <span className="font-bold">{speed} km/h</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
+          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-80">
             <FaEye className="text-3xl" />
             <div>
               Visibility: <span className="font-bold">{visibility / 1000} km</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
+          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-80">
             <WiBarometer className="text-3xl" />
             <div>
               Barometer: <span className="font-bold">{pressure} mb</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
+          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-80">
             <WiHumidity className="text-3xl" />
             <div>
               Humidity: <span className="font-bold">{humidity}%</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
+          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-80">
             <WiSunrise className="text-3xl" />
             <div>
               Sunrise: <span className="font-bold">{formatTime(sunrise)}</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-40">
+          <div className="flex items-center space-x-2 bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-80">
             <WiSunset className="text-3xl" />
             <div>
               Sunset: <span className="font-bold">{formatTime(sunset)}</span>
