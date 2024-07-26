@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 export default function Footer() {
@@ -210,10 +211,10 @@ export default function Footer() {
       {/* <!--Copyright section--> */}
       <div className="p-6 text-center dark:bg-neutral-700">
         <span>© 2024 Copyright:</span>
-        <a
+        <Link
           className="font-semibold text-neutral-600 dark:text-neutral-400"
           href="/"
-        >WeatherFy</a>
+        >WeatherFy</Link>
       </div>
     </footer>
   );
