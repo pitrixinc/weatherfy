@@ -36,7 +36,7 @@ const WeatherBlog = () => {
           >
             <img src={blog.image} alt={blog.title} className="w-24 h-24 rounded-lg object-cover" />
             <div className="ml-4 flex-1">
-              <h3 className="text-xl font-bold text-blue-600">{blog.title}</h3>
+              <h3 className="text-xl font-bold text-blue-600 hidden md:block lg:block">{blog.title}</h3>
               <p className="text-blue-800">
                 {blog.description.length > 100 ? `${blog.description.slice(0, 100)}...` : blog.description}
               </p>
