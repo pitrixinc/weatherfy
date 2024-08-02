@@ -1,14 +1,15 @@
 import About from '@/components/About'
+import Footer from '@/components/Footer'
 import NavBar from '@/components/NavBar'
 import React from 'react'
 
 const AboutUs = () => {
   return (
-    <div>
+    <div className='bg-center bg-cover' style={{ backgroundImage: "url('/images/back1.jpeg')" }}>
         <NavBar/>
         <About/>
 
-        <div className="bg-gray-50 py-10">
+        <div className=" py-10 bg-center bg-cover">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <section className="text-center mb-16">
             <h2 className="text-4xl font-extrabold text-gray-900">Who We Are</h2>
@@ -40,21 +41,21 @@ const AboutUs = () => {
           <section className="mb-16">
             <h3 className="text-2xl font-bold text-gray-900 text-center">Our Values</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="bg-white bg-opacity-40 p-6 rounded-lg shadow-md">
                 <h4 className="text-xl font-semibold text-gray-800">Integrity</h4>
                 <p className="mt-4 text-gray-600">
                 We uphold the highest standards of honesty and transparency in everything we do. 
                 Our users trust us to provide accurate and dependable weather information, and we take that responsibility seriously.
                 </p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="bg-white bg-opacity-40 p-6 rounded-lg shadow-md">
                 <h4 className="text-xl font-semibold text-gray-800">Innovation</h4>
                 <p className="mt-4 text-gray-600">
                 At Weatherfy, we are committed to continuous improvement and technological advancement. 
                 We leverage the latest tools and techniques to enhance our forecasting accuracy and deliver unparalleled user experiences.
                 </p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="bg-white bg-opacity-40 p-6 rounded-lg shadow-md">
                 <h4 className="text-xl font-semibold text-gray-800">Customer Focus</h4>
                 <p className="mt-4 text-gray-600">
                 Our users are at the heart of everything we do. We listen to their needs, respond to their feedback, 
@@ -68,22 +69,22 @@ const AboutUs = () => {
           <section className="mb-16">
             <h3 className="text-2xl font-bold text-gray-900 text-center">Our Team</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="bg-white bg-opacity-40 p-6 rounded-lg shadow-md text-center">
                 <img className="h-24 w-24 rounded-full mx-auto" src="https://wallpapers.com/images/hd/handsome-black-man-blue-polo-9mr9n48skon1tp1c.jpg" alt="Team member photo" />
                 <h4 className="text-xl font-semibold text-gray-800 mt-4">John Doe</h4>
                 <p className="text-gray-600">CEO</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="bg-white bg-opacity-40 p-6 rounded-lg shadow-md text-center">
                 <img className="h-24 w-24 rounded-full mx-auto" src="https://media.istockphoto.com/id/1428235898/photo/stylish-pretty-african-woman-with-afro-hairstyle-posing-near-geometric-wall.webp?b=1&s=170667a&w=0&k=20&c=VTAKEkNcgqskN6fKJraYNTZp6xhNcxusme-uyo6pjsc=" alt="Team member photo" />
                 <h4 className="text-xl font-semibold text-gray-800 mt-4">Jane Smith</h4>
                 <p className="text-gray-600">CTO</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="bg-white bg-opacity-40 p-6 rounded-lg shadow-md text-center">
                 <img className="h-24 w-24 rounded-full mx-auto" src="https://i.pinimg.com/236x/37/2b/88/372b88f41bb9b2fce0e13714f4e87600.jpg" alt="Team member photo" />
                 <h4 className="text-xl font-semibold text-gray-800 mt-4">Alice Johnson</h4>
                 <p className="text-gray-600">CFO</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="bg-white bg-opacity-40 p-6 rounded-lg shadow-md text-center">
                 <img className="h-24 w-24 rounded-full mx-auto" src="https://t3.ftcdn.net/jpg/06/04/86/66/360_F_604866647_DFsEYBmBdEipKojdTDxRaXgozu615O0O.jpg" alt="Team member photo" />
                 <h4 className="text-xl font-semibold text-gray-800 mt-4">Bob Brown</h4>
                 <p className="text-gray-600">COO</p>
@@ -100,6 +101,7 @@ const AboutUs = () => {
   */}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

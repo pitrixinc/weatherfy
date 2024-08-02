@@ -15,25 +15,56 @@ import {
     WiRain,
   } from 'react-icons/wi';
 import { FaTemperatureHigh, FaEye } from 'react-icons/fa';
+import WeatherBlog from './weatherBlog';
+
+
+// News component styled
+const NewsComponent = ({ articles }) => (
+  <div className="bg-blue-100 p-4 rounded-lg shadow-md bg-opacity-80 mt-8">
+    <h2 className="text-2xl font-bold mb-4 text-blue-800">Live Weather News</h2>
+    {articles.map((article, index) => (
+      <div key={index} className="mb-4">
+        <h3 className="text-xl font-bold text-blue-600">{article.title}</h3>
+        <p className="text-blue-800">{article.description}</p>
+        <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+          Read more
+        </a>
+      </div>
+    ))}
+  </div>
+);
+
 
 const AccraWeather = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Accra,GH&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
+        const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Tesano,Accra,GH&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
         setWeatherData(weatherResponse.data);
 
-        const forecastResponse = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Accra,GH&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
+        const forecastResponse = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Tesano,Accra,GH&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
         setForecastData(forecastResponse.data);
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }
     };
 
+    const fetchNews = async () => {
+      try {
+        const newsResponse = await axios.get(`https://newsapi.org/v2/everything?q=weather+Tesano&apiKey=${process.env.NEXT_PUBLIC_NEWSAPI_KEY}`);
+        setNews(newsResponse.data.articles);
+      } catch (error) {
+        console.error('Error fetching weather news:', error);
+      }
+    };
+
+
     fetchWeatherData();
+    fetchNews();
   }, []);
 
   if (!weatherData || !forecastData) {
@@ -73,7 +104,7 @@ const AccraWeather = () => {
   return (
     <div
       className=" md:p-8 font-sans bg-cover bg-center"
-      style={{ backgroundImage: "url('https://thumbs.dreamstime.com/b/blue-sky-clouds-natural-background-92316401.jpg')" }}
+      style={{ backgroundImage: "url('/images/back1.jpeg')" }}
     >
       <div className="max-w-screen-xl mx-auto bg-white bg-opacity-20 rounded-lg p-2 md:p-8 shadow-lg">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
@@ -145,6 +176,7 @@ const AccraWeather = () => {
             </div>
           ))}
         </div>
+        <WeatherBlog />
       </div>
     </div>
   );

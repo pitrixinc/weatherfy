@@ -277,7 +277,7 @@ const TheWeatherResult = () => {
         {/*  <h2 className="md:text-2xl text-xl p-2 font-bold">{location} Weather Article</h2> */}
           <div className="text-md ">
             {typedArticle.map((paragraph, index) => (
-              <p key={index} className="text-sm leading-relaxed text-gray-700 bg-white p-4 rounded-sm shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-0 first-letter:text-lg first-letter:font-bold first-letter:text-gray-900 first-line:tracking-widest">
+              <p key={index} className="text-sm leading-relaxed text-gray-700 bg-white bg-opacity-40 p-4 rounded-sm shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-0 first-letter:text-lg first-letter:font-bold first-letter:text-gray-900 first-line:tracking-widest">
                 {paragraph.startsWith('#') ? (
                   <strong>{paragraph.replace(/^#+\s*/, '')}</strong>
                 ) : (
@@ -336,7 +336,7 @@ const TheWeatherResult = () => {
         {/*  <h2 className="md:text-2xl text-xl p-2 font-bold">{location} Weather Article</h2> */}
           <div className="text-md ">
             {typedArticle.map((paragraph, index) => (
-              <p key={index} className="text-sm leading-relaxed text-gray-700 bg-white p-4 rounded-sm shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-0 first-letter:text-lg first-letter:font-bold first-letter:text-gray-900 first-line:tracking-widest">
+              <p key={index} className="text-sm leading-relaxed text-gray-700 bg-white bg-opacity-40 p-4 rounded-sm shadow-md border border-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out max-w-2xl mx-auto my-0 first-letter:text-lg first-letter:font-bold first-letter:text-gray-900 first-line:tracking-widest">
                 {paragraph.startsWith('#') ? (
                   <strong>{paragraph.replace(/^#+\s*/, '')}</strong>
                 ) : (
@@ -357,7 +357,7 @@ const TheWeatherResult = () => {
       </div>
 <div className='h-[610px] overflow-y-auto'>
       {weatherData ? (
-        <div className="bg-white shadow-md rounded-lg p-4 mt-8">
+        <div className=" shadow-md rounded-lg p-4 mt-8">
           <h2 className="md:text-2xl text-xl font-semibold mb-4">Current Weather Data</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="flex items-center bg-blue-50 p-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
@@ -459,7 +459,7 @@ const TheWeatherResult = () => {
       {hourlyForecast.map((hour, index) => (
         <div
           key={index}
-          className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300"
+          className="bg-gradient-to-r from-blue-50 to-blue-100  bg-opacity-40 p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300"
         >
           <div className="text-center mb-4">
             <p className="text-lg font-semibold text-gray-700">
@@ -513,7 +513,7 @@ const TheWeatherResult = () => {
     </div>
     <div className="mt-8">
             <h2 className="text-2xl font-bold mb-4 text-center">Temperature Graph</h2>
-            <div className="bg-white p-4 rounded-lg shadow-lg w-full h-[600px] flex items-center justify-center">
+            <div className="bg-white  bg-opacity-40 p-4 rounded-lg shadow-lg w-full h-[600px] flex items-center justify-center">
               <Line data={chartData} />
             </div>
           </div>
@@ -525,7 +525,7 @@ const TheWeatherResult = () => {
 <div className='h-[610px] overflow-y-auto'>
 
               {forecastData && (
-            <div className="bg-white shadow-md rounded-lg p-4">
+            <div className=" shadow-md rounded-lg p-4">
               <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">7-Day Forecast</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {forecastData.map((day, index) => (
