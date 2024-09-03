@@ -296,7 +296,7 @@ const TheWeatherResult = () => {
           </div>
         </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="">
         
         <div className="flex flex-col justify-between">
         <div className="mb-4 hidden md:block relative">
@@ -323,13 +323,7 @@ const TheWeatherResult = () => {
           )}
         </div>
 
-          <div className={`md:w-full ${modalIsOpen ? 'hidden' : ''}`}>
-            <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
-              {latitude && longitude && (
-                <MapComponent latitude={latitude} longitude={longitude} location={location} />
-              )}
-            </div>
-          </div>
+          
         </div>
 
         <div className="hidden md:block md:row-span-2 h-[410px] md:h-[710px] overflow-y-auto">
@@ -355,7 +349,7 @@ const TheWeatherResult = () => {
           </div>
         </div>
       </div>
-<div className='h-[610px] overflow-y-auto'>
+<div className=''>
       {weatherData ? (
         <div className=" shadow-md rounded-lg p-4 mt-8">
           <h2 className="md:text-2xl text-xl font-semibold mb-4">Current Weather Data</h2>
@@ -522,7 +516,7 @@ const TheWeatherResult = () => {
 </div>
 
 
-<div className='h-[610px] overflow-y-auto'>
+<div className=''>
 
               {forecastData && (
             <div className=" shadow-md rounded-lg p-4">
@@ -617,6 +611,14 @@ const TheWeatherResult = () => {
 <div className="hidden md:block"> {latitude && longitude && <RadarMap latitude={latitude} longitude={longitude} />} </div>
       
 </div>
+
+<div className={`md:w-full mt-5 ${modalIsOpen ? 'hidden' : ''}`}>
+            <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
+              {latitude && longitude && (
+                <MapComponent latitude={latitude} longitude={longitude} location={location} />
+              )}
+            </div>
+          </div>
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
         <div className="modal-content">

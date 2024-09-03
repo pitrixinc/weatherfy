@@ -103,10 +103,12 @@ const AccraWeather = () => {
 
   return (
     <div
-      className=" md:p-8 font-sans bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/back1.jpeg')" }}
+      className=" md:p-8 font-sans"
+     // style={{ backgroundImage: "url('/images/back1.jpeg')" }}
     >
+      
       <div className="max-w-screen-xl mx-auto bg-white bg-opacity-20 rounded-lg p-2 md:p-8 shadow-lg">
+        {/* 
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
           <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mt-1">{name}, GH</h1>
           <div className="flex space-x-3 mt-4 md:mt-0">
@@ -164,6 +166,7 @@ const AccraWeather = () => {
             </div>
           </div>
         </div>
+        */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           {forecastList.map((forecast, index) => (
             <div key={index} className="bg-blue-700 p-4 rounded-lg text-center text-white shadow-lg bg-opacity-40">

@@ -4,7 +4,7 @@ import NavBar from '@/components/Weather/NavBar/NavBar'
 
 const WeatherResult = () => {
   return (
-    <div className='bg-center bg-cover' style={{ backgroundImage: "url('/images/back1.jpeg')" }} >
+    <div>
         <NavBar/>
         <main>
           <TheWeatherResult/>

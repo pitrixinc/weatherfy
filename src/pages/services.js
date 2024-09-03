@@ -4,7 +4,7 @@ import React from 'react'
 
 const services = () => {
   return (
-    <div  className='bg-center bg-cover' style={{ backgroundImage: "url('/images/back1.jpeg')" }}>
+    <div>
         <NavBar/>
 
         <div className="container mx-auto px-4 py-12">
