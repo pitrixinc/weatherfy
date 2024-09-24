@@ -58,7 +58,7 @@ const Hero = () => {
                 </button>
               </div>
               
-            <p class="mt-3 text-sm text-white ">No credit card required</p>
+          {/*  <p class="mt-3 text-sm text-white ">No credit card required</p> */}
         </div>
 
         

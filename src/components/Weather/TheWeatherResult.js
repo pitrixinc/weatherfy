@@ -35,7 +35,7 @@ const TheWeatherResult = () => {
   const { location } = router.query;
   const [weatherData, setWeatherData] = useState(null);
   const [aiArticle, setAiArticle] = useState('');
-  const [images, setImages] = useState([]);
+ // const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [typedArticle, setTypedArticle] = useState([]);
@@ -64,7 +64,7 @@ const TheWeatherResult = () => {
       fetchAiContent();
       fetchHourlyForecast();
       fetchForecastData();
-      fetchImages(); // Call fetchImages when location changes
+  //    fetchImages(); // Call fetchImages when location changes
     }
   }, [location]);
 
@@ -122,6 +122,7 @@ const TheWeatherResult = () => {
     }
   };
 
+  /*
   const fetchImages = async () => {
     const apiKey = process.env.NEXT_PUBLIC_PEXELS_API_KEY;
     const url = `https://api.pexels.com/v1/search?query=${location}&per_page=3`;
@@ -148,6 +149,25 @@ const TheWeatherResult = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [images]);
+*/
+
+
+const [images, setImages] = useState([
+  'https://media.newyorker.com/photos/5ca64e18c3abc815ad5e8522/master/pass/190415_r34085.jpg',
+  'https://i0.wp.com/meta.eeb.org/wp-content/uploads/2021/01/AdobeStock_11334480-scaled.jpeg?fit=2560%2C1683&ssl=1',
+  'https://www.bridgemi.com/sites/default/files/styles/full_width_image/public/hero_images/strawberrypickingshutterstock.jpg?itok=GG1g21w5',
+  'https://portacool.com/wp-content/uploads/2021/05/farmworkers-scaled.jpg',
+]);
+
+
+// Optionally, you can implement a cycle through the images
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  }, 3000); // Change image every 3 seconds
+  return () => clearInterval(intervalId);
+}, [images.length]);
+
 
   const stopTyping = () => {
     setIsTyping(false);
@@ -608,7 +628,7 @@ const TheWeatherResult = () => {
       )}
 
 <AQI location={location} />
-<div className="hidden md:block"> {latitude && longitude && <RadarMap latitude={latitude} longitude={longitude} />} </div>
+{/*<div className="hidden md:block"> {latitude && longitude && <RadarMap latitude={latitude} longitude={longitude} />} </div> */}
       
 </div>
 
