@@ -36,7 +36,7 @@ export default function NavBar() {
                   <img className="w-auto md:h-10 h-8 sm:h-7" src="https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png" alt="logo" />
                   <span className='p-1 md:p-2 font-semibold text-gray-600'>Weatherfy</span>
                 </Link>
-
+{/*
                 <div className="hidden mx-10 md:block">
                   <div className="relative">
                     <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -53,7 +53,7 @@ export default function NavBar() {
                     </form>
                   </div>
                 </div>
-
+  */}
             {/* Mobile menu button */}
             <div className="flex lg:hidden">
               <button
@@ -128,7 +128,7 @@ export default function NavBar() {
                 <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">Khatab wedaa</h3>
               </button>
             </div>
-*/}
+
             <div className="my-4 md:hidden">
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -145,7 +145,7 @@ export default function NavBar() {
                   </form>
                 </div>
               </div>
-
+*/}
 
           </div>
         </div>
@@ -269,6 +269,7 @@ export default function NavBar() {
               </div>
             </div>
           </div>
+                  
 {/*
           <div className="py-3 mt-3 -mx-3 overflow-y-auto whitespace-nowrap scroll-hidden">
             {countries.map((country, index) => (

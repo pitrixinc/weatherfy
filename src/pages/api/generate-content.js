@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const articleResult = await model.generateContent([
-      `in 500 words each, provide data about the actual atmosphere condition at ${location} and use meteorology to predict how the weather will behave in the future, secondly, write a detailed farming strategy, guide and advice for farmers based on the weather condition and key weather info of ${location} . Format the response with headers and paragraphs. do not include placeholders, specify everything`,
+      `without including date, in 500 words each, provide data about the actual atmosphere condition at ${location} and use meteorology to predict how the weather will behave in the future, secondly, write a detailed farming strategy, guide and advice for farmers based on the weather condition and key weather info of ${location} . Format the response with headers and paragraphs. do not include placeholders, specify everything`,
     ]);
 
     // For image generation
