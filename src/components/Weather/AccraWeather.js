@@ -13,6 +13,9 @@ import {
     WiNightClear,
     WiDayCloudy,
     WiRain,
+    WiSnow,
+    WiThunderstorm,
+    WiRaindrops,
   } from 'react-icons/wi';
 import { FaTemperatureHigh, FaEye } from 'react-icons/fa';
 import WeatherBlog from './weatherBlog';
