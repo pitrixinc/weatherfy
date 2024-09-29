@@ -32,7 +32,7 @@ export default function Home() {
           <Hero/>
           <AccraWeather/>
           <Features/>
-          <MyWeather/>
+        {/*  <MyWeather/> */}
           <Footer/>
         </main>
       </>
