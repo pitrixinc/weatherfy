@@ -77,10 +77,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* <!-- Main container div: holds the entire content of the footer, including four sections (TW Elements, Products, Useful links, and Contact), with responsive styling and appropriate padding/margins. --> 
+      {/* <!-- Main container div: holds the entire content of the footer, including four sections (TW Elements, Products, Useful links, and Contact), with responsive styling and appropriate padding/margins. --> */}
       <div className="mx-6 py-10 text-center md:text-left">
         <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* <!-- TW Elements section --> 
+          {/* <!-- TW Elements section --> */}
           <div className="">
             <h6
               className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
@@ -100,7 +100,7 @@ export default function Footer() {
               elit.
             </p>
           </div>
-          {/* <!-- Products section --> 
+          {/* <!-- Products section --> */}
           <div className="">
             <h6
               className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
@@ -123,7 +123,7 @@ export default function Footer() {
               >Laravel</a>
             </p>
           </div>
-          {/* <!-- Useful links section --> 
+          {/* <!-- Useful links section --> */}
           <div className="">
             <h6
               className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
@@ -146,7 +146,7 @@ export default function Footer() {
               >Help</a>
             </p>
           </div>
-          {/* <!-- Contact section --> 
+          {/* <!-- Contact section --> */}
           <div>
             <h6
               className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
@@ -206,7 +206,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
-  </div> */}
+      </div>
 
       {/* <!--Copyright section--> */}
       <div className="p-6 text-center dark:bg-neutral-700">

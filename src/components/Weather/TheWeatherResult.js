@@ -35,7 +35,7 @@ const TheWeatherResult = () => {
   const { location } = router.query;
   const [weatherData, setWeatherData] = useState(null);
   const [aiArticle, setAiArticle] = useState('');
- // const [images, setImages] = useState([]);
+  const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [typedArticle, setTypedArticle] = useState([]);
@@ -64,7 +64,7 @@ const TheWeatherResult = () => {
       fetchAiContent();
       fetchHourlyForecast();
       fetchForecastData();
-  //    fetchImages(); // Call fetchImages when location changes
+      fetchImages(); // Call fetchImages when location changes
     }
   }, [location]);
 
@@ -122,7 +122,6 @@ const TheWeatherResult = () => {
     }
   };
 
-  /*
   const fetchImages = async () => {
     const apiKey = process.env.NEXT_PUBLIC_PEXELS_API_KEY;
     const url = `https://api.pexels.com/v1/search?query=${location}&per_page=3`;
@@ -149,25 +148,6 @@ const TheWeatherResult = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [images]);
-*/
-
-
-const [images, setImages] = useState([
-  'https://media.newyorker.com/photos/5ca64e18c3abc815ad5e8522/master/pass/190415_r34085.jpg',
-  'https://i0.wp.com/meta.eeb.org/wp-content/uploads/2021/01/AdobeStock_11334480-scaled.jpeg?fit=2560%2C1683&ssl=1',
-  'https://www.bridgemi.com/sites/default/files/styles/full_width_image/public/hero_images/strawberrypickingshutterstock.jpg?itok=GG1g21w5',
-  'https://portacool.com/wp-content/uploads/2021/05/farmworkers-scaled.jpg',
-]);
-
-
-// Optionally, you can implement a cycle through the images
-useEffect(() => {
-  const intervalId = setInterval(() => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  }, 3000); // Change image every 3 seconds
-  return () => clearInterval(intervalId);
-}, [images.length]);
-
 
   const stopTyping = () => {
     setIsTyping(false);
@@ -316,7 +296,7 @@ useEffect(() => {
           </div>
         </div>
 
-      <div className="">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         
         <div className="flex flex-col justify-between">
         <div className="mb-4 hidden md:block relative">
@@ -343,7 +323,13 @@ useEffect(() => {
           )}
         </div>
 
-          
+          <div className={`md:w-full ${modalIsOpen ? 'hidden' : ''}`}>
+            <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
+              {latitude && longitude && (
+                <MapComponent latitude={latitude} longitude={longitude} location={location} />
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="hidden md:block md:row-span-2 h-[410px] md:h-[710px] overflow-y-auto">
@@ -369,7 +355,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
-<div className=''>
+<div className='h-[610px] overflow-y-auto'>
       {weatherData ? (
         <div className=" shadow-md rounded-lg p-4 mt-8">
           <h2 className="md:text-2xl text-xl font-semibold mb-4">Current Weather Data</h2>
@@ -536,11 +522,11 @@ useEffect(() => {
 </div>
 
 
-<div className=''>
+<div className='h-[610px] overflow-y-auto'>
 
               {forecastData && (
             <div className=" shadow-md rounded-lg p-4">
-              <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">3-Day Forecast</h2>
+              <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">7-Day Forecast</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {forecastData.map((day, index) => (
                   <div
@@ -628,17 +614,9 @@ useEffect(() => {
       )}
 
 <AQI location={location} />
-{/*<div className="hidden md:block"> {latitude && longitude && <RadarMap latitude={latitude} longitude={longitude} />} </div> */}
+<div className="hidden md:block"> {latitude && longitude && <RadarMap latitude={latitude} longitude={longitude} />} </div>
       
 </div>
-
-<div className={`md:w-full mt-5 ${modalIsOpen ? 'hidden' : ''}`}>
-            <div onClick={openModal} className={`${latitude && longitude ? '' : 'cursor-not-allowed'}`}>
-              {latitude && longitude && (
-                <MapComponent latitude={latitude} longitude={longitude} location={location} />
-              )}
-            </div>
-          </div>
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="modal-overlay">
         <div className="modal-content">

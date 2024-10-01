@@ -5,7 +5,7 @@ import React from 'react'
 
 const AboutUs = () => {
   return (
-    <div>
+    <div className='bg-center bg-cover' style={{ backgroundImage: "url('/images/back1.jpeg')" }}>
         <NavBar/>
         <About/>
 

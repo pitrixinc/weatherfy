@@ -4,7 +4,7 @@ import React from 'react'
 
 const ContactUs = () => {
   return (
-    <div>
+    <div className='bg-center bg-cover' style={{ backgroundImage: "url('/images/back1.jpeg')" }}>
         <NavBar/>
 
         <div className="container mx-auto px-4 py-12">

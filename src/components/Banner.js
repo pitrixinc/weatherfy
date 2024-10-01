@@ -11,8 +11,6 @@ const Banner = () => {
     }
   };
 
-
-
   return (
     <header className="bg-white dark:bg-gray-900">
       <div className="container px-6 py-16 mx-auto">
