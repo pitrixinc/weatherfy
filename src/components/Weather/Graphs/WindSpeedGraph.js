@@ -45,7 +45,7 @@ const WindSpeedGraph = ({ forecastData }) => {
       },
       title: {
         display: true,
-        text: '7-Day Wind Speed Forecast',
+        text: '3-Day Wind Speed Forecast',
       },
     },
   };

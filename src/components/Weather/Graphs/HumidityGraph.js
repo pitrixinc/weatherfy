@@ -45,7 +45,7 @@ const HumidityGraph = ({ forecastData }) => {
       },
       title: {
         display: true,
-        text: '7-Day Humidity Forecast',
+        text: '3-Day Humidity Forecast',
       },
     },
   };

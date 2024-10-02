@@ -56,7 +56,7 @@ const MyWeather = () => {
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 md:gap-6 gap-1">
         {weatherData && (
           <>
-            <div className="weather-item flex items-center bg-cover bg-center p-4 rounded-lg shadow-md relative"
+          {/*  <div className="weather-item flex items-center bg-cover bg-center p-4 rounded-lg shadow-md relative"
               style={{ backgroundImage: `url('https://www.eff.org/files/banner_library/locational-privacy.jpg')` }}>
               <div className="overlay absolute inset-0 bg-black opacity-25 rounded-lg"></div>
               <FaCloudSun className="text-4xl text-yellow-500 mr-4 z-10" />
@@ -64,7 +64,7 @@ const MyWeather = () => {
                 <p className="text-lg font-semibold text-white">Location</p>
                 <span className="block text-md text-white">{weatherData.location.name}, {weatherData.location.region}, {weatherData.location.country}</span>
               </div>
-            </div>
+        </div> */}
             <div className="weather-item flex items-center bg-cover bg-center p-4 rounded-lg shadow-md relative"
               style={{ backgroundImage: `url('https://newsnetwork.mayoclinic.org/n7-mcnn/7bcc9724adf7b803/uploads/2020/03/shutterstock_763301095_101F_Fotor-16x9-1-1024x576.jpg')` }}>
               <div className="overlay absolute inset-0 bg-black opacity-25 rounded-lg"></div>

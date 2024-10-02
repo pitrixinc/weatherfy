@@ -2,17 +2,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
-    WiThermometer,
-    WiStrongWind,
-    WiCloudy,
-    WiBarometer,
-    WiHumidity,
-    WiSunrise,
-    WiSunset,
-    WiDaySunny,
-    WiNightClear,
-    WiDayCloudy,
-    WiRain,
+  WiThermometer,
+  WiStrongWind,
+  WiCloudy,
+  WiBarometer,
+  WiHumidity,
+  WiSunrise,
+  WiSunset,
+  WiDaySunny,
+  WiNightClear,
+  WiDayCloudy,
+  WiRain,
+  WiSnow,
+  WiThunderstorm,
+  WiRaindrops,
   } from 'react-icons/wi';
 import { FaTemperatureHigh, FaEye } from 'react-icons/fa';
 import WeatherBlog from './weatherBlog';
@@ -43,10 +46,10 @@ const AccraWeather = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Tesano,Accra,GH&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
+        const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Accra,GH&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
         setWeatherData(weatherResponse.data);
 
-        const forecastResponse = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Tesano,Accra,GH&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
+        const forecastResponse = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Accra,GH&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
         setForecastData(forecastResponse.data);
       } catch (error) {
         console.error('Error fetching weather data:', error);
@@ -55,7 +58,7 @@ const AccraWeather = () => {
 
     const fetchNews = async () => {
       try {
-        const newsResponse = await axios.get(`https://newsapi.org/v2/everything?q=weather+Tesano&apiKey=${process.env.NEXT_PUBLIC_NEWSAPI_KEY}`);
+        const newsResponse = await axios.get(`https://newsapi.org/v2/everything?q=weather+Accra&apiKey=${process.env.NEXT_PUBLIC_NEWSAPI_KEY}`);
         setNews(newsResponse.data.articles);
       } catch (error) {
         console.error('Error fetching weather news:', error);
@@ -91,13 +94,19 @@ const AccraWeather = () => {
   const getWeatherIcon = (condition) => {
     switch (condition) {
       case 'Clear':
-        return <WiDaySunny className="text-8xl md:text-9xl text-yellow-500" />;
+        return <WiDaySunny className="text-yellow-500" />;
       case 'Clouds':
-        return <WiDayCloudy className="text-8xl md:text-9xl text-white" />;
+        return <WiDayCloudy className="text-gray-500" />;
       case 'Rain':
-        return <WiRain className="text-8xl md:text-9xl text-blue-700" />;
+        return <WiRain className="text-blue-500" />;
+      case 'Snow':
+        return <WiSnow className="text-blue-300" />;
+      case 'Thunderstorm':
+        return <WiThunderstorm className="text-purple-600" />;
+      case 'Drizzle':
+        return <WiRaindrops className="text-blue-400" />;
       default:
-        return <WiCloudy className="text-8xl md:text-9xl text-white" />;
+        return <WiCloudy className="text-gray-400" />;
     }
   };
 
@@ -111,7 +120,7 @@ const AccraWeather = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mt-1">{name}, GH</h1>
           <div className="flex space-x-3 mt-4 md:mt-0">
             <button className="p-3 rounded-full bg-blue-800 text-white shadow-md">°C</button>
-            <button className="p-3 rounded-full bg-blue-800 text-white shadow-md">°F</button>
+         {/*   <button className="p-3 rounded-full bg-blue-800 text-white shadow-md">°F</button> */}
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
@@ -168,8 +177,9 @@ const AccraWeather = () => {
           {forecastList.map((forecast, index) => (
             <div key={index} className="bg-blue-700 p-4 rounded-lg text-center text-white shadow-lg bg-opacity-40">
               <div className="text-xl font-bold">{new Date(forecast.dt * 1000).toLocaleDateString([], { weekday: 'short', day: '2-digit', month: 'short' })}</div>
+              <div className="text-md font-semibold">{formatTime(forecast.dt)}</div> {/* Add this line to display time */}
               <div className="text-6xl md:text-10xl text-yellow-400 my-2 flex items-center justify-center">
-                <WiCloudy />
+              {getWeatherIcon(forecast.weather[0].main)}
               </div>
               <div className="text-lg">{forecast.main.temp_max.toFixed(1)}° / {forecast.main.temp_min.toFixed(1)}°</div>
               <div className="text-md">{forecast.weather[0].main}</div>

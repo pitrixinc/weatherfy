@@ -52,7 +52,7 @@ const TemperatureGraph = ({ forecastData }) => {
       },
       title: {
         display: true,
-        text: '7-Day Temperature Forecast',
+        text: '3-Day Temperature Forecast',
       },
     },
   };

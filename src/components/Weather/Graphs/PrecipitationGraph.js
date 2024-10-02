@@ -45,7 +45,7 @@ const PrecipitationGraph = ({ forecastData }) => {
       },
       title: {
         display: true,
-        text: '7-Day Precipitation Forecast',
+        text: '3-Day Precipitation Forecast',
       },
     },
   };
